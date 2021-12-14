@@ -13,3 +13,5 @@ day4:
 	$(CC) Day4/Day4.cpp Day4/TestDay4.cpp $(GTEST_FLAGS) -o run
 day5:
 	$(CC) Day5/Day5.cpp Day5/TestDay5.cpp $(COMMON_SRC) -I$(COMMON_INC) $(GTEST_FLAGS) -o run
+day6:
+	$(CC) Day6/Day6.cpp Day6/TestDay6.cpp $(COMMON_SRC) -I$(COMMON_INC) $(GTEST_FLAGS) -o run
