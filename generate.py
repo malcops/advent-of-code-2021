@@ -8,7 +8,7 @@ with open(f"{day}/{day}.cpp", 'w') as f:
     f.write(f'''#include "{day}.hpp"\n''')
 
 with open(f"{day}/{day}.hpp", 'w') as f:
-    f.write(f'')
+    f.write(f'#include "Common.hpp"')
 
 with open(f"{day}/Test{day}.cpp", 'w') as f:
     f.write(f'''#include "{day}.hpp"\n''')
@@ -28,4 +28,4 @@ with open(f"{day}/Test{day}.cpp", 'w') as f:
 
 with open("Makefile", 'a') as f:
     f.write(f"{day.lower()}:\n")
-    f.write(f"\t$(CC) {day}/{day}.cpp {day}/Test{day}.cpp $(GTEST_FLAGS) -o run\n")
+    f.write(f"\t$(CC) {day}/{day}.cpp {day}/Test{day}.cpp $(COMMON_SRC) -I$(COMMON_INC) $(GTEST_FLAGS) -o run\n")
