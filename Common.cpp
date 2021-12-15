@@ -18,3 +18,17 @@ inputVector parse_input(std::string inputFile){
 
     return input;
 }
+
+std::vector<int> parseNumbers(std::string inputFile){
+
+    inputVector input = parse_input(inputFile);
+    std::vector<int> numbers;
+    std::stringstream ss(input.at(0));
+    while( ss.good() )
+    {
+        std::string substr;
+        getline( ss, substr, ',' );
+        numbers.push_back( stoi(substr) );
+    }
+    return numbers;
+}

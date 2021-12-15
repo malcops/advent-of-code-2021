@@ -7,3 +7,4 @@
 
 typedef std::vector<std::string> inputVector;
 inputVector parse_input(std::string inputFile);
+std::vector<int> parseNumbers(std::string inputFile);
