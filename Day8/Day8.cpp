@@ -40,7 +40,7 @@ int solveEntry(std::vector<std::string> signal, std::vector<std::string> output)
 
     for(auto it=signal.begin(); it!=signal.end(); it++){
         std::sort(it->begin(), it->end());
-        int length = (*it).length();
+        int length = it->length();
         if(length == 2) {
             std::set<char> w;
             for(auto x=it->begin(); x!=it->end(); x++){
@@ -205,7 +205,7 @@ int part1(std::string s){
 
     int count = 0;
     for(auto it=outputList.begin(); it!=outputList.end(); it++){
-        for(auto x=(*it).begin(); x!=(*it).end(); x++){
+        for(auto x=it->begin(); x!=it->end(); x++){
             int size = (*x).length();
             // 1, 4, 7, 8
             if(size == 2 || size == 4 || size == 3 || size == 7){
@@ -213,6 +213,5 @@ int part1(std::string s){
             }
         }
     }
-
     return count;
 }
