@@ -19,3 +19,5 @@ day7:
 	$(CC) Day7/Day7.cpp Day7/TestDay7.cpp $(COMMON_SRC) -I$(COMMON_INC) $(GTEST_FLAGS) -o run
 day8:
 	$(CC) Day8/Day8.cpp Day8/TestDay8.cpp $(COMMON_SRC) -I$(COMMON_INC) $(GTEST_FLAGS) -o run
+day9:
+	$(CC) Day9/Day9.cpp Day9/TestDay9.cpp $(COMMON_SRC) -I$(COMMON_INC) $(GTEST_FLAGS) -o run
