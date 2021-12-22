@@ -38,5 +38,29 @@ int part1(){
     printGrid(grid, xmax, ymax);
 
 
-    return 0;
+    int above;
+    int below;
+    int left;
+    int right;
+    int x;
+    std::vector<int> minima;
+    for (int i = 1; i < xmax-1; i++) {
+        for (int j = 1; j < ymax-1; j++) {
+            above = grid[i][j-1];
+            below = grid[i][j+1];
+            left  = grid[i-1][j];
+            right = grid[i+1][j];
+            x = grid[i][j];
+            if(x < above && x < below && x < left && x < right){
+                std::cout << i << " " << j << " " << x << std::endl;
+                minima.push_back(x);
+            }
+        }
+    }
+
+    int totalRisk = 0;
+    for(auto m=0; m<minima.size(); m++){
+        totalRisk += minima.at(m) + 1;
+    }
+    return totalRisk;
 }
