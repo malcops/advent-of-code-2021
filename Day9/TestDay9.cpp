@@ -2,8 +2,8 @@
 #include "gtest/gtest.h"
 
 TEST(TestDay9, part1example){
-
-    ASSERT_EQ(part1(), 15);
+    auto in= parse_input("Day9/example.txt");
+    ASSERT_EQ(part1(in), 15);
 }
 
 int main(int argc, char **argv) {
