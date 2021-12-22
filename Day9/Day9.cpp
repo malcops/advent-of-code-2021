@@ -43,7 +43,6 @@ int part1(inputVector input){
 
     // printGrid(grid, xmax, ymax);
 
-
     int above;
     int below;
     int left;
