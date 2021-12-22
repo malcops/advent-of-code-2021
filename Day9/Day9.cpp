@@ -9,13 +9,13 @@ void printGrid(int** grid, int xmax, int ymax){
     }
 }
 
-int part1(inputVector input){
+int** createGrid(inputVector in){
 
     int PAD_NUMBER = 10;
     int PAD_AMOUNT = 1;
 
-    int xmax = input.at(0).length() + PAD_AMOUNT*2;
-    int ymax = input.size() + PAD_AMOUNT*2;
+    int xmax = in.at(0).length() + PAD_AMOUNT*2;
+    int ymax = in.size() + PAD_AMOUNT*2;
 
     int** grid = new int*[xmax];
     for (int i = 0; i < xmax; i++) {
@@ -29,7 +29,7 @@ int part1(inputVector input){
 
     int yidx = 1;
     int xidx = 1;
-    for(auto y=input.begin(); y!=input.end(); y++){
+    for(auto y=in.begin(); y!=in.end(); y++){
         for(auto x=y->begin(); x!=y->end(); x++){
             int num = (*x) - '0';
             grid[xidx][yidx] = num;
@@ -40,7 +40,17 @@ int part1(inputVector input){
         xidx = 1;
         yidx++;
     }
+    return grid;
+}
 
+int part1(inputVector input){
+
+    int PAD_NUMBER = 10;
+    int PAD_AMOUNT = 1;
+
+    int xmax = input.at(0).length() + PAD_AMOUNT*2;
+    int ymax = input.size() + PAD_AMOUNT*2;
+    auto grid = createGrid(input);
     // printGrid(grid, xmax, ymax);
 
     int above;
