@@ -23,7 +23,7 @@ TEST(TestDay9, part2example){
 
 TEST(TestDay9, part2){
     auto in= parse_input("Day9/input.txt");
-    ASSERT_EQ(part2(in), 931000); // too low
+    ASSERT_EQ(part2(in), 0); // 931000 too low
 }
 
 int main(int argc, char **argv) {

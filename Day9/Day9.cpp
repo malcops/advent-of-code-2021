@@ -12,6 +12,19 @@ void printGrid(int** grid, int xmax, int ymax){
     }
 }
 
+void writeGrid(int** grid, int xmax, int ymax){
+
+    std::ofstream myfile;
+    myfile.open ("example.csv");
+    for (int i = 0; i < ymax; i++) {
+        for (int j = 0; j < xmax; j++) {
+            myfile << grid[j][i] << ", ";
+        }
+        myfile << std::endl;
+    }
+    myfile.close();
+}
+
 int** createGrid(inputVector in){
 
     int xmax = in.at(0).length() + PAD_AMOUNT*2;
@@ -92,9 +105,10 @@ int part2(inputVector input){
         }
     }
 
-    printGrid(grid, xmax, ymax);
+    // printGrid(grid, xmax, ymax);
 
     // https://en.wikipedia.org/wiki/Connected-component_labeling
+    // https://en.wikipedia.org/wiki/Hoshen%E2%80%93Kopelman_algorithm
 
     // create a 2nd grid for labels
     int** labels = new int*[xmax];
@@ -127,8 +141,11 @@ int part2(inputVector input){
                 } else if(west != 0 && north == 0){
                     labels[x][y] = std::min(label, labels[x-1][y]);
                 } else if(west == 0 && north != 0){
-                    labels[x][y] = std::min(label, labels[x][y-1]);
-                } else {
+                    // int min = std::min(label, labels[x-1][y]);
+                    int min = std::min(label, labels[x][y-1]);
+                    labels[x][y] = min;
+                    labels[y][y-1] = min;
+                } else if (west != 0 && north != 0){
                     int min = std::min(label, labels[x-1][y]);
                     min = std::min(min, labels[x][y-1]);
                     labels[x][y] = min;
@@ -145,7 +162,8 @@ int part2(inputVector input){
     }
 
     std::cout << std::endl;
-    printGrid(labels, xmax, ymax);
+    // printGrid(labels, xmax, ymax);
+    writeGrid(labels, xmax, ymax);
 
     std::map<int, int> basinSizes;
     for (int y = 1; y < ymax-1; y++) {
