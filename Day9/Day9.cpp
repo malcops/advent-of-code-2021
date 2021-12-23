@@ -82,7 +82,7 @@ int part2(inputVector input){
     int xmax = input.at(0).length() + PAD_AMOUNT*2;
     int ymax = input.size() + PAD_AMOUNT*2;
     auto grid = createGrid(input);
-    printGrid(grid, xmax, ymax);
+    // printGrid(grid, xmax, ymax);
     std::cout << std::endl;
 
     // convert to binary grid
@@ -92,7 +92,7 @@ int part2(inputVector input){
         }
     }
 
-    printGrid(grid, xmax, ymax);
+    // printGrid(grid, xmax, ymax);
 
     // https://en.wikipedia.org/wiki/Connected-component_labeling
 
@@ -125,18 +125,45 @@ int part2(inputVector input){
                     label++;
                     labels[x][y] = label;
                 } else if(west != 0 && north == 0){
-                    labels[x][y] = label;
+                    labels[x][y] = std::min(label, labels[x-1][y]);
                 } else if(west == 0 && north != 0){
-                    labels[x][y] = label;
+                    labels[x][y] = std::min(label, labels[x][y-1]);
                 } else {
-                    labels[x][y] = label;
+                    int min = std::min(label, labels[x-1][y]);
+                    min = std::min(min, labels[x][y-1]);
+                    labels[x][y] = min;
+                    labels[x-1][y] = min;
                 }
             }
         }
     }
 
     std::cout << std::endl;
-    printGrid(labels, xmax, ymax);
+    // printGrid(labels, xmax, ymax);
 
-    return 0;
+    std::map<int, int> basinSizes;
+    for (int y = 1; y < ymax-1; y++) {
+        for (int x = 1; x < xmax-1; x++) {
+            int tmp = labels[x][y];
+            if(tmp){
+                basinSizes[tmp] = basinSizes[tmp] + 1;
+            }
+        }
+    }
+
+    int total = 1;
+    for(auto x=0; x<3; x++){
+        int max = 0;
+        int key = 0;
+        for(auto it=basinSizes.begin(); it!=basinSizes.end(); it++){
+            if(it->second > max){
+                key = it->first;
+                max = it->second;
+            }
+        }
+        total = max*total;
+        basinSizes[key] = 0;
+    }
+
+    return total;
 }
