@@ -92,7 +92,7 @@ int part2(inputVector input){
         }
     }
 
-    // printGrid(grid, xmax, ymax);
+    printGrid(grid, xmax, ymax);
 
     // https://en.wikipedia.org/wiki/Connected-component_labeling
 
@@ -117,10 +117,10 @@ int part2(inputVector input){
         for (int x = 1; x < xmax-1; x++) {
             pix  = grid[x][y];
             if(pix){
-                east = grid[x+1][y];
+                // east = grid[x+1][y];
                 west = grid[x-1][y];
                 north = grid[x][y-1];
-                south = grid[x][y+1];
+                // south = grid[x][y+1];
                 if(west == 0 && north == 0){
                     label++;
                     labels[x][y] = label;
@@ -132,14 +132,20 @@ int part2(inputVector input){
                     int min = std::min(label, labels[x-1][y]);
                     min = std::min(min, labels[x][y-1]);
                     labels[x][y] = min;
-                    labels[x-1][y] = min;
+                    // propogate this value left
+                    int idx = 1;
+                    while(labels[x-idx][y]){
+                        labels[x-idx][y] = min;
+                        idx++;
+                    }
+                    labels[x][y-1] = min;
                 }
             }
         }
     }
 
     std::cout << std::endl;
-    // printGrid(labels, xmax, ymax);
+    printGrid(labels, xmax, ymax);
 
     std::map<int, int> basinSizes;
     for (int y = 1; y < ymax-1; y++) {
@@ -161,6 +167,7 @@ int part2(inputVector input){
                 max = it->second;
             }
         }
+        std::cout << "max: " << max << std::endl;
         total = max*total;
         basinSizes[key] = 0;
     }
