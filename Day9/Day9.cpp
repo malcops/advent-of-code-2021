@@ -82,6 +82,8 @@ int part2(inputVector input){
     int xmax = input.at(0).length() + PAD_AMOUNT*2;
     int ymax = input.size() + PAD_AMOUNT*2;
     auto grid = createGrid(input);
+    printGrid(grid, xmax, ymax);
+    std::cout << std::endl;
 
     // convert to binary grid
     for(int y=0; y<ymax; y++){
@@ -111,23 +113,23 @@ int part2(inputVector input){
     int south;
     int pix;
     int label = 0;
-    for (int i = 1; i < xmax-1; i++) {
-        for (int j = 1; j < ymax-1; j++) {
-            pix  = grid[i][j];
+    for (int y = 1; y < ymax-1; y++) {
+        for (int x = 1; x < xmax-1; x++) {
+            pix  = grid[x][y];
             if(pix){
-                east = grid[i+1][j];
-                west = grid[i-1][j];
-                north = grid[i][j-1];
-                south = grid[i][j+1];
+                east = grid[x+1][y];
+                west = grid[x-1][y];
+                north = grid[x][y-1];
+                south = grid[x][y+1];
                 if(west == 0 && north == 0){
                     label++;
-                    labels[i][j] = label;
+                    labels[x][y] = label;
                 } else if(west != 0 && north == 0){
-                    labels[i][j] = label;
+                    labels[x][y] = label;
                 } else if(west == 0 && north != 0){
-                    labels[i][j] = label;
+                    labels[x][y] = label;
                 } else {
-                    labels[i][j] = label;
+                    labels[x][y] = label;
                 }
             }
         }
