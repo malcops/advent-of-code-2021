@@ -12,6 +12,8 @@ TEST(TestDay9, part1){
 }
 
 TEST(TestDay9, part2example2){
+    // example 2 is first 15 rows of input
+    // see column with 5/28.. mistake here somewhere
     auto in= parse_input("Day9/example2.txt");
     ASSERT_EQ(part2(in), 1134);
 }
@@ -23,7 +25,7 @@ TEST(TestDay9, part2example){
 
 TEST(TestDay9, part2){
     auto in= parse_input("Day9/input.txt");
-    ASSERT_EQ(part2(in), 0); // 931000 too low
+    ASSERT_EQ(part2(in), 0); // 4171200 too low
 }
 
 int main(int argc, char **argv) {

@@ -162,8 +162,8 @@ int part2(inputVector input){
     }
 
     std::cout << std::endl;
-    // printGrid(labels, xmax, ymax);
-    writeGrid(labels, xmax, ymax);
+    printGrid(labels, xmax, ymax);
+    // writeGrid(labels, xmax, ymax);
 
     std::map<int, int> basinSizes;
     for (int y = 1; y < ymax-1; y++) {
