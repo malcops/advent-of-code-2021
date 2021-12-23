@@ -17,15 +17,10 @@ TEST(TestDay8, part2solveEntry){
     signal = {"be", "cfbegad", "cbdgef", "fgaecd", "cgeb", "fdcge", "agebfd", "fecdb", "fabcd", "edb"};
     output = {"fdgacbe", "cefdb", "cefbgd", "gcbe"};
     ASSERT_EQ(solveEntry(signal, output), 8394);
-
-    // signal = {"edbfga", "begcd", "cbg", "gc", "gcadebf", "fbgde", "acbgfd", "abcde", "gfcbed", "gfec"};
-    // output = {"fdgacbe", "cefdb", "cefbgd", "gcbe"};
-    // ASSERT_EQ(solveEntry(signal, output), 9781);
 }
 
 TEST(TestDay8, difference){
 
-    std::set<char> four = {'a', 'b', 'e', 'f'};
     std::set<char> nine = {'a', 'b', 'c', 'd', 'e', 'f'};
     std::set<char> pot = {'b', 'c', 'd', 'e', 'f'};
     auto diff = difference(nine, pot);
